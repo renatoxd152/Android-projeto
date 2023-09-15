@@ -12,14 +12,13 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
 
     private ListView listaprodutos;
-    private String[] itens =
-    {
-            "Arroz", "Feijão", "Carne"
-    };
-
+    private ArrayList<Produto> produtos;
+    private AdapterProdutos adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,12 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
         listaprodutos = findViewById(R.id.listaProdutos);
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-                getApplicationContext(),
-                android.R.layout.simple_list_item_1,
-                android.R.id.text1,
-                itens
-        );
+        adapter = new AdapterProdutos(this,produtos);
 
         listaprodutos.setAdapter(adapter);
         listaprodutos.setOnItemClickListener( new EscutadorLista() );
